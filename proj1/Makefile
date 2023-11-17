@@ -15,7 +15,7 @@ COMP_TARGET = counter_tb
 all:
 	$(IVERILOG) -o $(COMP_TARGET) -c $(SRC_FILES)
 
-sim: 
+sim: all
 	$(VVP) $(COMP_TARGET)
 	$(GTKWAVE) $(COMP_TARGET).vcd
 clean:
