@@ -10,7 +10,7 @@ SRC_FILES = filelist.txt
 
 
 # Simulation target
-COMP_TARGET = counter_tb
+COMP_TARGET = controller_tb
 
 all:
 	$(IVERILOG) -o $(COMP_TARGET) -c $(SRC_FILES)

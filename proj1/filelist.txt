@@ -1,2 +1,2 @@
-counter_tb.v
-counter.v
+controller_tb.v
+controller.v

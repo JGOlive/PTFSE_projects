@@ -2,12 +2,12 @@
 //`timescale 10ns / 1ns delete this one
 ////////////////////////////////////////////////////////////////////////////////
 
-module counter_tb;
+module controller_tb;
 
 	reg clk, per, init;
 	wire pulse;
 	
-	counter counter (
+	controller controller (
 			.clk(clk),
 			.init(init),
 			.per(per),
@@ -16,8 +16,8 @@ module counter_tb;
 
 	initial 
 		begin
-		 $dumpfile("counter_tb.vcd");
-		 $dumpvars(0,counter_tb);
+		 $dumpfile("controller_tb.vcd");
+		 $dumpvars(0,controller_tb);
 
 		 clk=0;
 		 init=0;
