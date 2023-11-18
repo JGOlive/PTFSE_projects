@@ -11,60 +11,76 @@
 
 module controller(
     input clk,
-    input init,
-    input per,
-    output reg pulse
-	);
+    input start,
+    input reset,
+    output reg out,
+    output reg bist_end,
+    output reg running);
 
-  reg prev_init;
-  reg [1:0] state;
-  reg [5:0] count;
-  reg pulse_reg;
+  // State Flip-flops
+  reg [2:0] state, n_state;
+  
+  // State coding
+  localparam [2:0] IDLE = 0, RUN = 1, COMPLETED = 2;
+
+  // M and N 
+  localparam [3:0] N_MAX = 8;
+  localparam [3:0] M_MAX = 9;
+
+  // Regs
+  reg pos_start;
+  reg [3:0] n, m;
 
   always @(posedge clk) begin
 
-    // Detects the L to H init transition
-    if ((prev_init != init) && (init == 1)) begin
-      count = 0;
-      if (per == 0)
-        state = 2'b10;  // Single pulse_reg
-      else
-        state = 2'b11;  // Repeated pulses
-    end
+    if (reset == 1)
+      state = IDLE;
+    else
+      state = n_state;
 
-    // Single pulse
-    if (state == 2'b10) begin
-      if (count < 10)
-        pulse_reg = 0;
-      if ((count < 15) && (count >= 10))
-        pulse_reg = 1;
-      if ((count < 40) && (count >= 15) )
-        pulse_reg = 0;
-      if (count >= 40) begin
-        state = 2'b00;
+  end
+
+  always @(*) begin
+  
+    case (state)
+      IDLE: begin
+        // Outputs
+        out = 0;
+        bist_end = 0;
+        running = 0;
+
+        // module regs
+        n = 0;
+        m = 0;
+
+        // Defining the next state
+        if (pos_start == 1) begin
+          n_state = RUN;
+          pos_start = 0;
+        end
+        else
+          n_state = state;
       end
-    end
 
-    // Repated pulses
-    if (state == 2'b11) begin
-      if (count < 10)
-        pulse_reg = 0;
-      if ((count < 15) && (count >= 10))
-        pulse_reg = 1;
-      if ((count < 40) && (count >= 15) )
-        pulse_reg = 0;
-      if (count >= 40)
-        count = 0;
-    end
+      RUN:  begin
 
-    if (state == 2'b00) begin
-      count = 0;
-      pulse_reg = 0;
-    end
+        if (n == N_MAX-1 && m == M_MAX)
+          n_state = COMPLETED;
+        else
+          n_state = state;
+      end
+      
+      COMPLETED: begin
 
-    count = count + 1;
-    prev_init <= init;
-    pulse = pulse_reg;
+      end
+
+      default:  n_state = IDLE;
+    endcase
+  end
+
+  // Detects L to H transition on START input
+  always @(posedge start) begin
+    pos_start = 1;
   end
 
 endmodule
