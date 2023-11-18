@@ -4,14 +4,16 @@
 
 module controller_tb;
 
-	reg clk, per, init;
-	wire pulse;
+	reg clk, start, reset;
+	wire out, bist_end, running;
 	
 	controller controller (
 			.clk(clk),
-			.init(init),
-			.per(per),
-			.pulse(pulse)
+			.start(start),
+			.reset(reset),
+			.out(out),
+			.bist_end(bist_end),
+			.running(running)
 			);
 
 	initial 
@@ -20,30 +22,21 @@ module controller_tb;
 		 $dumpvars(0,controller_tb);
 
 		 clk=0;
-		 init=0;
-		 per=0;
+		 start=0;
+		 reset=0;
 		end
    
 	always
-		#50 clk = !clk; 
-//		#10 clk = !clk; 
+//		#50 clk = !clk; 
+		#10 clk = !clk; 
 
 	initial
 	  	begin
-		 #300 per=0;
-		 #400 init=1; // force known state (single pulse)
-		 #800 init=0;
-		 #5500 init=1; // test single state
-		 #5600 init=0;
-		 #9100 per=1;
-		 #9600 init=1;	// test repeated mode
-		 #9700 init=0;
-		 #15600 init=1; // cont pulse while on cont pulse
-		 #15700	init=0;
-		 #24000 per=0;
-		 #25000 init=1;	// single pulse while on cont pulse
-		 #25100 init=0;
-		 #30000 $finish;	
+		 #200 reset=1; // Test reset
+		 #200 reset=0;
+		 #100 start=1; // test start
+		 #50  start=0;
+		 #500 $finish;	
 		end 
    			
 endmodule
