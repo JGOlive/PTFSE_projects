@@ -1,3 +1,4 @@
 controller_tb.v
+counter_4b.v
+counter_control.v
 controller.v
-4b_counter.v
