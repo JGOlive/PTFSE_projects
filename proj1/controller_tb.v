@@ -36,7 +36,7 @@ module controller_tb;
 		 #200 reset=0;
 		 #100 start=1; // test start
 		 #50  start=0;
-		 #500 $finish;	
+		 #2000 $finish;	
 		end 
    			
 endmodule

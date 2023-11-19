@@ -23,17 +23,21 @@ module counter_control(
             n_enable = 0;
             m_enable = 0;
         end
-        else if (n == `N_MAX && m == `M_MAX) begin
-            out = 0;
-            done = 1;
-            n_reset = 1;
-            m_reset = 1;
-            n_enable = 0;
-            m_enable = 0;
-        end
         else if (enable == 1) begin
-            done = 0;
-            if (n == `N_MAX) begin
+            if (n == `N_MAX && m == `M_MAX) begin
+                out = 0;
+                done = 1;
+                n_reset = 1;
+                m_reset = 1;
+                n_enable = 0;
+                m_enable = 0;
+            end
+            else if (n == `N_MAX) begin
+                out = 0;
+                m_enable = 1;
+            end
+            else if (n == `N_MAX+1) begin
+                done = 0;
                 out = 0;
                 n_enable = 0;
                 n_reset = 1;
@@ -41,6 +45,7 @@ module counter_control(
                 m_reset = 0;
             end
             else begin
+                done = 0;
                 out = 1;
                 n_enable = 1;
                 n_reset = 0;
