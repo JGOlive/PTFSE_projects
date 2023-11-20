@@ -36,6 +36,20 @@ module controller_tb;
 		 #200 reset=0;
 		 #100 start=1; // test start
 		 #50  start=0;
+		 #2000 start = 0; // end of simple operation
+		 #100 start = 1;
+		 #50 start = 0;
+		 #2000 reset = 1;
+		 #50 start = 1;
+		 #50 start = 0;
+		 #500 reset = 0;
+		 #2000 start = 1;
+		 #50 start = 0;
+		 #1000 start = 1;
+		 #1000 start = 0;
+		 #50 start = 1;
+		 #500 reset = 1;
+		 #50 reset = 0;
 		 #2000 $finish;	
 		end 
    			
