@@ -64,10 +64,13 @@ module controller(
             n_rst = 1;
 
             // Defining the next state
-            if (pos_start == 1) begin
-                n_state = RUN_H;
+            if (pos_start == 1 && reset == 1) begin
+                n_state = state;
                 pos_start = 0;
-                
+            end
+            else if (pos_start == 1) begin
+                n_state = RUN_H;
+                pos_start = 0;    
             end
             else
                 n_state = state;
@@ -84,6 +87,8 @@ module controller(
             // M Counter
             m_en = 0;
             m_rst = 0;
+            // pos start
+            pos_start = 0;
 
             // Defining the next state
             if (n == `N_MAX-1 && m == `M_MAX) begin
@@ -108,6 +113,8 @@ module controller(
             // M Counter
             m_en = 1;
             m_rst = 0;
+            // pos start
+            pos_start = 0;  
 
             // Defining the next state
             n_state = RUN_H;
@@ -126,6 +133,13 @@ module controller(
             n_rst = 1;
             n_en = 0;
 
+            if (pos_start == 1) begin
+                n_state = RUN_H;
+                pos_start = 0;
+            end
+            else begin
+                n_state = state;
+            end
         end
 
         default: n_state = IDLE;
