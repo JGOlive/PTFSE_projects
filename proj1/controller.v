@@ -8,6 +8,7 @@
 // 
 ////////////////////////////////////////////////////////////////////////////////// 
 // 0.1 us clock
+`include "params.v" 
 
 module controller(
     input clk,
@@ -21,7 +22,7 @@ module controller(
     reg [2:0] state, n_state;
     
     // State coding
-    localparam [2:0] IDLE = 0, RUN = 1, COMPLETED = 2;
+    localparam [2:0] IDLE = 0, RUN_H = 1, RUN_L = 2, COMPLETED = 3;
 
     // M and N 
     localparam [3:0] N_MAX = 8;
@@ -32,10 +33,8 @@ module controller(
     wire [3:0] n, m;
 
     // wires
-    wire n_en, n_rst;
-    wire m_en, m_rst;
-    reg cnt_ctrl_en, cnt_ctrl_rst; 
-    wire cnt_ctrl_out, cnt_ctrl_done;
+    reg n_en, n_rst;
+    reg m_en, m_rst;
 
 
 
@@ -57,62 +56,75 @@ module controller(
             out = 0;
             bist_end = 0;
             running = 0;
-            // module regs
-            /*n = 0;
-            m = 0;*/
-            // Counter control
-            cnt_ctrl_rst = 1;
-            cnt_ctrl_en = 0;
+            // M Counter
+            m_en = 0;
+            m_rst = 1;
+            // N Counter
+            n_en = 0;
+            n_rst = 1;
 
             // Defining the next state
             if (pos_start == 1) begin
-                n_state = RUN;
+                n_state = RUN_H;
                 pos_start = 0;
-                /*
-                n_en = 1;
-                n_rst = 0;*/
+                
             end
             else
                 n_state = state;
         end
 
-        RUN: begin
+        RUN_H: begin
+            // Outputs
+            out = 1;
+            running = 1;
+            bist_end = 0;
+            // N Counter
+            n_en = 1;
+            n_rst = 0;
+            // M Counter
+            m_en = 0;
+            m_rst = 0;
 
-            if (cnt_ctrl_done == 0) begin
-                cnt_ctrl_rst = 0;
-                cnt_ctrl_en = 1;
-            end
-            else begin
-                cnt_ctrl_en = 0;
-                cnt_ctrl_rst = 1;
-            end
-
-            /*if (n == N_MAX-1 && m == M_MAX)
+            // Defining the next state
+            if (n == `N_MAX-1 && m == `M_MAX) begin
                 n_state = COMPLETED;
-            else if (n == N_MAX) begin
-                out = 0;
-
-                n_rst = 1;
-
-                m_en = 1;
-                m_rst = 0;
-
-                n_state = state;
             end
-            else begin
-                out = 1;
-
-                n_rst = 0;
-                n_en = 1;
-
-                m_en = 0;
-                m_rst = 1;
-
+            else if (n == `N_MAX-1) begin
+                n_state = RUN_L;
+            end
+            else
                 n_state = state;
-            end */
+        end
+
+        RUN_L: begin
+            // Outputs
+            out = 0;
+            running = 1;
+            bist_end = 0;
+
+            // N Counter
+            n_en = 0;
+            n_rst = 1;
+            // M Counter
+            m_en = 1;
+            m_rst = 0;
+
+            // Defining the next state
+            n_state = RUN_H;
         end
         
         COMPLETED: begin
+            // Outputs
+            out = 0;
+            running = 0;
+            bist_end = 1;
+
+            // M Counter
+            m_rst = 1;
+            m_en = 0;
+            // N Counter
+            n_rst = 1;
+            n_en = 0;
 
         end
 
@@ -140,7 +152,7 @@ module controller(
     );
 
     // Counter control
-    counter_control counter_control(
+    /*counter_control counter_control(
         .clk(clk),
         .reset(cnt_ctrl_rst),
         .enable(cnt_ctrl_en),
@@ -152,6 +164,6 @@ module controller(
         .m_enable(m_en),
         .out(cnt_ctrl_out),
         .done(cnt_ctrl_done)
-    );
+    );*/
 
 endmodule
