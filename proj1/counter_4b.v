@@ -2,7 +2,7 @@
 
 module counter_4b(input clk, input reset, input enable, output reg [3:0] count);
     
-    always @(posedge clk or posedge reset) begin
+    always @(posedge clk) begin
         if (reset == 1)
             count <= 4'd0;
         else if (enable == 1)

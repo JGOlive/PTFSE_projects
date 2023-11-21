@@ -20,6 +20,7 @@ module controller(
 
     // State Flip-flops
     reg [2:0] state, n_state;
+    reg p_start;
     
     // State coding
     localparam [2:0] IDLE = 0, RUN_H = 1, RUN_L = 2, COMPLETED = 3;
@@ -42,9 +43,9 @@ module controller(
     always @(posedge clk) begin
 
         if (reset == 1)
-            state = IDLE;
+            state <= IDLE;
         else
-            state = n_state;
+            state <= n_state;
 
     end
 
@@ -62,15 +63,9 @@ module controller(
             // N Counter
             n_en = 0;
             n_rst = 1;
-
-            // Defining the next state
-            if (pos_start == 1 && reset == 1) begin
-                n_state = state;
-                pos_start = 0;
-            end
-            else if (pos_start == 1) begin
-                n_state = RUN_H;
-                pos_start = 0;    
+            
+            if (pos_start == 1) begin
+                n_state = RUN_H; 
             end
             else
                 n_state = state;
@@ -88,7 +83,7 @@ module controller(
             m_en = 0;
             m_rst = 0;
             // pos start
-            pos_start = 0;
+            //pos_start = 0;
 
             // Defining the next state
             if (n == `N_MAX-1 && m == `M_MAX) begin
@@ -112,9 +107,7 @@ module controller(
             n_rst = 1;
             // M Counter
             m_en = 1;
-            m_rst = 0;
-            // pos start
-            pos_start = 0;  
+            m_rst = 0; 
 
             // Defining the next state
             n_state = RUN_H;
@@ -135,7 +128,7 @@ module controller(
 
             if (pos_start == 1) begin
                 n_state = RUN_H;
-                pos_start = 0;
+                //pos_start = 0;
             end
             else begin
                 n_state = state;
@@ -147,8 +140,12 @@ module controller(
     end
 
     // Detects L to H transition on START input
-    always @(posedge start) begin
-        pos_start = 1;
+    always @(posedge clk) begin
+        if (p_start == 0 && start == 1)
+            pos_start <= 1;
+        else
+            pos_start <= 0;
+        p_start <= start;
     end
 
     // Counters

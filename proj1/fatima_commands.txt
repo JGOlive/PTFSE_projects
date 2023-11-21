@@ -1,0 +1,6 @@
+-code coverage
+$ source ptfse.init
+$ make sim-cov
+
+-synthesis
+hal -gui <Verilog>
