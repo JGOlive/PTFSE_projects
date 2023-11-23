@@ -49,6 +49,16 @@ module controller(
 
     end
 
+    // Detects L to H transition on START input
+    always @(posedge clk) begin
+        if (p_start == 0 && start == 1)
+            pos_start <= 1;
+        else
+            pos_start <= 0;
+
+        p_start <= start;
+    end
+
     always @(*) begin
     
         case (state)
@@ -82,8 +92,6 @@ module controller(
             // M Counter
             m_en = 0;
             m_rst = 0;
-            // pos start
-            //pos_start = 0;
 
             // Defining the next state
             if (n == `N_MAX-1 && m == `M_MAX) begin
@@ -128,7 +136,6 @@ module controller(
 
             if (pos_start == 1) begin
                 n_state = RUN_H;
-                //pos_start = 0;
             end
             else begin
                 n_state = state;
@@ -137,15 +144,6 @@ module controller(
 
         default: n_state = IDLE;
         endcase
-    end
-
-    // Detects L to H transition on START input
-    always @(posedge clk) begin
-        if (p_start == 0 && start == 1)
-            pos_start <= 1;
-        else
-            pos_start <= 0;
-        p_start <= start;
     end
 
     // Counters
@@ -161,20 +159,5 @@ module controller(
         .enable(m_en),
         .count(m)
     );
-
-    // Counter control
-    /*counter_control counter_control(
-        .clk(clk),
-        .reset(cnt_ctrl_rst),
-        .enable(cnt_ctrl_en),
-        .n(n),
-        .m(m),
-        .n_reset(n_rst),
-        .m_reset(m_rst),
-        .n_enable(n_en),
-        .m_enable(m_en),
-        .out(cnt_ctrl_out),
-        .done(cnt_ctrl_done)
-    );*/
 
 endmodule
