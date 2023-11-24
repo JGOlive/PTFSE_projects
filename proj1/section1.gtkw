@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
-[*] Fri Nov 24 11:16:19 2023
+[*] Fri Nov 24 11:17:47 2023
 [*]
 [dumpfile] "/home/ze/PTFSE/projects/proj1/controller_tb.vcd"
 [dumpfile_mtime] "Fri Nov 24 11:15:14 2023"
 [dumpfile_size] 21823
-[savefile] "/home/ze/PTFSE/projects/proj1/test.gtkw"
-[timestart] 289000
+[savefile] "/home/ze/PTFSE/projects/proj1/section1.gtkw"
+[timestart] 0
 [size] 2486 1273
 [pos] -39 -39
-*-18.652527 2084000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-19.569839 451000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] controller_tb.
 [treeopen] controller_tb.controller.
 [sst_width] 233
