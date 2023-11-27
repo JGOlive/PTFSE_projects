@@ -142,7 +142,20 @@ module controller(
             end
         end
 
-        default: n_state = IDLE;
+        default: begin
+            // Outputs
+            out = 0;
+            bist_end = 0;
+            running = 0;
+            // M Counter
+            m_en = 0;
+            m_rst = 1;
+            // N Counter
+            n_en = 0;
+            n_rst = 1;
+
+            n_state = IDLE;
+        end
         endcase
     end
 
