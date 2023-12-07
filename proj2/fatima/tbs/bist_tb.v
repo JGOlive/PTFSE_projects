@@ -22,11 +22,13 @@ integer index;
 assign {bist_start} = pattern_mem[index]; 
 
 /* instanciacao do modulo b01 e correspondencia dos terminais */
-top_level top_level ( .reset(res),
-                .clock(clk),
-                .bist_start(bist_start),
-                .bist_end(bist_end),
-                .pass_nfail(p_nf));
+top_level top_level ( 
+    .reset(res),
+    .clk(clk),
+    .bist_start(bist_start),
+    .bist_end(bist_end),
+    .pass_nfail(p_nf)
+);
 
 initial
 begin
