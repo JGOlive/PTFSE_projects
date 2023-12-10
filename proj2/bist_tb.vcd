@@ -1,0 +1,210 @@
+$date
+	Fri Dec  8 16:37:27 2023
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module bist_tb $end
+$var wire 1 ! p_nf $end
+$var wire 1 " bist_start $end
+$var wire 1 # bist_end $end
+$var reg 1 $ clk $end
+$var reg 1 % res $end
+$var integer 32 & index [31:0] $end
+$scope module top_level $end
+$var wire 1 " bist_start $end
+$var wire 1 $ clk $end
+$var wire 1 % reset $end
+$var wire 1 ' running_proj1_ctrl $end
+$var wire 1 ( out_proj1_ctrl $end
+$var wire 1 # bist_end $end
+$var reg 1 ! pass_nfail $end
+$var reg 1 ) pos_bist_start $end
+$var reg 1 * prev_bist_start $end
+$var reg 1 + reset_proj1_ctrl $end
+$scope module bist_controller $end
+$var wire 1 $ clk $end
+$var wire 1 + reset $end
+$var wire 1 " start $end
+$var wire 4 , n [3:0] $end
+$var wire 4 - m [3:0] $end
+$var parameter 3 . COMPLETED $end
+$var parameter 3 / IDLE $end
+$var parameter 4 0 M_MAX $end
+$var parameter 4 1 N_MAX $end
+$var parameter 3 2 RUN_H $end
+$var parameter 3 3 RUN_L $end
+$var reg 1 # bist_end $end
+$var reg 1 4 m_en $end
+$var reg 1 5 m_rst $end
+$var reg 1 6 n_en $end
+$var reg 1 7 n_rst $end
+$var reg 3 8 n_state [2:0] $end
+$var reg 1 ( out $end
+$var reg 1 9 p_start $end
+$var reg 1 : pos_start $end
+$var reg 1 ' running $end
+$var reg 3 ; state [2:0] $end
+$scope module m_counter $end
+$var wire 1 $ clk $end
+$var wire 1 4 enable $end
+$var wire 1 5 reset $end
+$var reg 4 < count [3:0] $end
+$upscope $end
+$scope module n_counter $end
+$var wire 1 $ clk $end
+$var wire 1 6 enable $end
+$var wire 1 7 reset $end
+$var reg 4 = count [3:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+b10 3
+b1 2
+b1000 1
+b1001 0
+b0 /
+b11 .
+$end
+#100000
+$dumpvars
+bx =
+bx <
+bx ;
+x:
+x9
+bx 8
+x7
+x6
+x5
+x4
+bx -
+bx ,
+x+
+x*
+x)
+x(
+x'
+b0 &
+0%
+0$
+x#
+1"
+x!
+$end
+#1000000
+b0 8
+17
+06
+15
+04
+0'
+0#
+0(
+19
+0:
+0+
+1*
+0)
+1$
+#2000000
+b1 &
+0$
+#3000000
+b0 ;
+b0 -
+b0 <
+b0 ,
+b0 =
+1$
+#4000000
+0"
+b10 &
+0$
+#5000000
+09
+0*
+1$
+#6000000
+1"
+b11 &
+0$
+#7000000
+b1 8
+1*
+1)
+19
+1:
+1$
+#8000000
+b100 &
+0$
+#9000000
+05
+07
+16
+1'
+1(
+b1 ;
+0:
+0)
+1$
+#10000000
+0"
+b101 &
+0$
+#11000000
+0*
+09
+b1 ,
+b1 =
+1$
+#12000000
+b110 &
+0$
+#13000000
+b10 ,
+b10 =
+1$
+#14000000
+1"
+b111 &
+0$
+#15000000
+1*
+1)
+19
+1:
+b11 ,
+b11 =
+1$
+#16000000
+0"
+b1000 &
+0$
+#17000000
+b100 ,
+b100 =
+09
+0:
+0*
+0)
+1$
+#18000000
+b1001 &
+0$
+#19000000
+b101 ,
+b101 =
+1$
+#20000000
+x"
+b1010 &
+0$

@@ -8,10 +8,10 @@ module top_level (
         output reg pass_nfail
     );
 
-    // Regs
+    // Regs, wires
     reg prev_bist_start, pos_bist_start;
 
-    // proj1 controller
+    // Regs, wires proj1 controller
     reg reset_proj1_ctrl;
     wire running_proj1_ctrl, out_proj1_ctrl;
     

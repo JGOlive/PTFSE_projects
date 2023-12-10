@@ -48,6 +48,10 @@ begin
   /* le o array de bits (vectores de teste) do ficheiro externo b01.vec */
   //$readmemb("b01.vec", pattern_mem);
   $readmemb("bist.vec", pattern_mem);
+  
+  // remove later (used for waveform visualization) !!!!!!
+  $dumpfile("bist_tb.vcd");
+  $dumpvars(0,bist_tb);
  
   forever
   begin
