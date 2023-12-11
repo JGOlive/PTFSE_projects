@@ -9,10 +9,10 @@ set_db init_hdl_search_path {.}
 read_libs c35_CORELIB_TYP.lib
 
 # Read the circuit
-read_hdl b01.v
+read_hdl cicuito09.v
 
 # Elaboration (pre-synthesis)
-elaborate b01
+elaborate cicuito09
 
 # Analyze the design
 check_design
@@ -21,7 +21,7 @@ check_design
 ######## IMPORTANT ########
 #### THE SIGNAL NAMED "clock" MAY NEED TO BE REPLACED
 #### BY THE NAME OF THE CLOCK IN YOUR CIRCUIT
-create_clock -name clk -period 10000 [get_ports clock]
+create_clock -name clk -period 10000 [get_ports clk]
 
 # Read the constraints from an SDC file
 #read_sdc <SDC file>
@@ -34,7 +34,7 @@ define_dft shift_enable -active high -create_port scan_en
 ######## IMPORTANT ########
 #### THE SIGNAL NAMED "clock" MAY NEED TO BE REPLACED
 #### BY THE NAME OF THE CLOCK IN YOUR CIRCUIT
-define_dft test_clock -name scan_clk clock
+define_dft test_clock -name scan_clk clk
 
 # Check for DFT violations
 check_dft_rules > dft_rules.report
@@ -54,12 +54,12 @@ connect_scan_chains -auto_create_chains
 
 # Generate reports
 report qor
-write_hdl -mapped > b01_scan_syn.v 
-write_sdc > b01_scan.sdc
-write_scandef > b01_scan_chain.txt
-write_atpg -stil > b01_scan.stil
-report gates > b01_scan_gates.txt
-report timing > b01_scan_timing.txt
-report power > b01_power.txt
+write_hdl -mapped > circuito09_scan_syn.v 
+write_sdc > circuito09_scan.sdc
+write_scandef > circuito09_scan_chain.txt
+write_atpg -stil > circuito09_scan.stil
+report gates > circuito09_scan_gates.txt
+report timing > circuito09_scan_timing.txt
+report power > circuito09_power.txt
 
 exit

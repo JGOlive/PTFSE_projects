@@ -14,12 +14,12 @@ SIM_rtl_circuit:
     #	xmelab -access +r tb_$(CIRCUIT):module
     #	xmsim -gui tb_$(CIRCUIT):module
     # SINGLE STEP MODE
-	xrun $(GUI) sources/b01.v testbenches/b01_tb.v
+	xrun $(GUI) sources/cicuito09.v testbenches/b01_tb.v
 
 SYN_dft_circuit:
 	# Step 2: synthesize the circuit with scan chain
 	genus -f scripts/synthesis_dft.tcl
-	sed -i '1s/^/`timescale 1ns\/1ps /' b01_scan_syn.v
+	sed -i '1s/^/`timescale 1ns\/1ps /' circuito09_scan_syn.v
 
 SIM_syn_scan_circuit:
 	# Step 3: simulate the original circuit with scan chain (gate-level simulation)
