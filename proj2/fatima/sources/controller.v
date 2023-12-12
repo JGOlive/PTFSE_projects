@@ -21,7 +21,7 @@ module controller(
     output reg running);
 
     // State Flip-flops
-    reg [2:0] state, n_state;
+    reg [1:0] state, n_state;
     reg p_start;
     
     // State coding

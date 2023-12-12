@@ -14,6 +14,11 @@ module top_level (
     // Regs, wires proj1 controller
     reg reset_proj1_ctrl;
     wire running_proj1_ctrl, out_proj1_ctrl;
+
+    // Regs, wires LFSR
+    // 7b
+    reg reset_lfsr_7b, en_lfsr_7b;
+    wire out_lfsr_7b;
     
     // RESET
     always @(posedge clk) begin
@@ -46,6 +51,14 @@ module top_level (
         .out(out_proj1_ctrl),
         .bist_end(bist_end),
         .running(running_proj1_ctrl)
+    );
+
+    // LFSRs
+    flsr_7b flsr_7b(
+        .reset(reset_lfsr_7b),
+        .clk(clk),
+        .enable(en_lfsr_7b),
+        .x(out_lfsr_7b)
     );
 
 endmodule

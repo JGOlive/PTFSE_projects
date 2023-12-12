@@ -9,10 +9,10 @@ set_db init_hdl_search_path {.}
 read_libs c35_CORELIB_TYP.lib
 
 # Read the circuit
-read_hdl cicuito09.v
+read_hdl sources/circuito09.v
 
 # Elaboration (pre-synthesis)
-elaborate cicuito09
+elaborate circuito09
 
 # Analyze the design
 check_design
@@ -26,7 +26,7 @@ create_clock -name clk -period 10000 [get_ports clk]
 # Read the constraints from an SDC file
 #read_sdc <SDC file>
 
-# Define the scan type
+# Define the scan typef
 set_db dft_scan_style muxed_scan
 
 # Define the scan ports

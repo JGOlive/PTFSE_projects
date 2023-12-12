@@ -1,0 +1,35 @@
+VERSION 5.5 ;
+NAMESCASESENSITIVE ON ;
+DIVIDERCHAR "/" ;
+BUSBITCHARS "[]" ;
+DESIGN circuito09 ;
+
+SCANCHAINS 1 ;
+  - chain1_seg1_scan_clk_rising 
+    + PARTITION p_scan_clk_rising 
+      MAXBITS 18
+    + START PIN scan_in
+    + FLOATING 
+       cntCh1_prev_reg[0] ( IN SD ) ( OUT QN ) 
+       cntCh1_prev_reg[1] ( IN SD ) ( OUT QN ) 
+       cntCh1_prev_reg[2] ( IN SD ) ( OUT QN ) 
+       cntCh1_prev_reg[3] ( IN SD ) ( OUT QN ) 
+       cntCh1_reg[0] ( IN SD ) ( OUT QN ) 
+       cntCh1_reg[1] ( IN SD ) ( OUT QN ) 
+       cntCh1_reg[2] ( IN SD ) ( OUT QN ) 
+       cntCh1_reg[3] ( IN SD ) ( OUT QN ) 
+       cntCh2_prev_reg[0] ( IN SD ) ( OUT QN ) 
+       cntCh2_prev_reg[1] ( IN SD ) ( OUT QN ) 
+       cntCh2_prev_reg[2] ( IN SD ) ( OUT QN ) 
+       cntCh2_prev_reg[3] ( IN SD ) ( OUT QN ) 
+       cntCh2_reg[0] ( IN SD ) ( OUT QN ) 
+       cntCh2_reg[1] ( IN SD ) ( OUT QN ) 
+       cntCh2_reg[2] ( IN SD ) ( OUT QN ) 
+       cntCh2_reg[3] ( IN SD ) ( OUT QN ) 
+       cur_reg[0] ( IN SD ) ( OUT Q ) 
+       cur_reg[1] ( IN SD ) ( OUT QN ) 
+    + STOP PIN scan_out
+;
+
+END SCANCHAINS 
+END DESIGN 

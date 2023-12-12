@@ -14,7 +14,7 @@ SIM_rtl_circuit:
     #	xmelab -access +r tb_$(CIRCUIT):module
     #	xmsim -gui tb_$(CIRCUIT):module
     # SINGLE STEP MODE
-	xrun $(GUI) sources/cicuito09.v testbenches/b01_tb.v
+	xrun $(GUI) sources/circuito09.v testbenches/b01_tb.v
 
 SYN_dft_circuit:
 	# Step 2: synthesize the circuit with scan chain
