@@ -18,7 +18,8 @@ module top_level (
     // Regs, wires LFSR
     // 7b
     reg reset_lfsr_7b, en_lfsr_7b;
-    wire out_lfsr_7b;
+    reg reset_lfsr_9b, en_lfsr_9b;
+    wire out_lfsr_7b, out_lfsr_9b;
     
     // RESET
     always @(posedge clk) begin
@@ -54,11 +55,18 @@ module top_level (
     );
 
     // LFSRs
-    flsr_7b flsr_7b(
+    lfsr_7b lfsr_7b(
         .reset(reset_lfsr_7b),
         .clk(clk),
         .enable(en_lfsr_7b),
         .x(out_lfsr_7b)
+    );
+
+    lfsr_9b lfsr_9b(
+        .reset(reset_lfsr_9b),
+        .clk(clk),
+        .enable(en_lfsr_9b),
+        .x(out_lfsr_9b)
     );
 
 endmodule

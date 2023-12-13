@@ -4,13 +4,13 @@ module flsr(
         input clk,
         input reset,
         input enable,
-        output reg [8:0] x;
+        output reg [8:0] x
     );
 
 
     always @(posedge clk) begin
         if (reset == 1) begin
-            x <= 9b'010100101;
+            x <= 28;
         end
         else if (enable == 1) begin
             x[0] <= x[1];

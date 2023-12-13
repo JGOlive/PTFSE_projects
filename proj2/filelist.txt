@@ -2,3 +2,4 @@ fatima/sources/top_level.v
 fatima/sources/controller.v
 fatima/sources/counter_4b.v
 fatima/sources/lfsr_7b.v
+fatima/sources/lfsr_9b.v
