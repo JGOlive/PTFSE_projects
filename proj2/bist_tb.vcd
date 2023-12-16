@@ -1,5 +1,5 @@
 $date
-	Tue Dec 12 12:58:44 2023
+	Sat Dec 16 22:38:25 2023
 $end
 $version
 	Icarus Verilog
@@ -20,89 +20,102 @@ $var wire 1 $ clk $end
 $var wire 1 % reset $end
 $var wire 1 ' running_proj1_ctrl $end
 $var wire 1 ( out_proj1_ctrl $end
-$var wire 1 ) out_lfsr_7b $end
+$var wire 9 ) out_lfsr_9b [8:0] $end
+$var wire 7 * out_lfsr_7b [6:0] $end
 $var wire 1 # bist_end $end
-$var reg 1 * en_lfsr_7b $end
+$var reg 1 + en_lfsr_7b $end
+$var reg 1 , en_lfsr_9b $end
 $var reg 1 ! pass_nfail $end
-$var reg 1 + pos_bist_start $end
-$var reg 1 , prev_bist_start $end
-$var reg 1 - reset_lfsr_7b $end
-$var reg 1 . reset_proj1_ctrl $end
+$var reg 1 - pos_bist_start $end
+$var reg 1 . prev_bist_start $end
+$var reg 1 / reset_lfsr_7b $end
+$var reg 1 0 reset_lfsr_9b $end
+$var reg 1 1 reset_proj1_ctrl $end
 $scope module bist_controller $end
 $var wire 1 $ clk $end
-$var wire 1 . reset $end
+$var wire 1 1 reset $end
 $var wire 1 " start $end
-$var wire 4 / n [3:0] $end
-$var wire 4 0 m [3:0] $end
-$var parameter 3 1 COMPLETED $end
-$var parameter 3 2 IDLE $end
-$var parameter 4 3 M_MAX $end
-$var parameter 4 4 N_MAX $end
-$var parameter 3 5 RUN_H $end
-$var parameter 3 6 RUN_L $end
+$var wire 4 2 n [3:0] $end
+$var wire 4 3 m [3:0] $end
+$var parameter 3 4 COMPLETED $end
+$var parameter 3 5 IDLE $end
+$var parameter 4 6 M_MAX $end
+$var parameter 4 7 N_MAX $end
+$var parameter 3 8 RUN_H $end
+$var parameter 3 9 RUN_L $end
 $var reg 1 # bist_end $end
-$var reg 1 7 m_en $end
-$var reg 1 8 m_rst $end
-$var reg 1 9 n_en $end
-$var reg 1 : n_rst $end
-$var reg 2 ; n_state [1:0] $end
+$var reg 1 : m_en $end
+$var reg 1 ; m_rst $end
+$var reg 1 < n_en $end
+$var reg 1 = n_rst $end
+$var reg 2 > n_state [1:0] $end
 $var reg 1 ( out $end
-$var reg 1 < p_start $end
-$var reg 1 = pos_start $end
+$var reg 1 ? p_start $end
+$var reg 1 @ pos_start $end
 $var reg 1 ' running $end
-$var reg 2 > state [1:0] $end
+$var reg 2 A state [1:0] $end
 $scope module m_counter $end
 $var wire 1 $ clk $end
-$var wire 1 7 enable $end
-$var wire 1 8 reset $end
-$var reg 4 ? count [3:0] $end
+$var wire 1 : enable $end
+$var wire 1 ; reset $end
+$var reg 4 B count [3:0] $end
 $upscope $end
 $scope module n_counter $end
 $var wire 1 $ clk $end
-$var wire 1 9 enable $end
-$var wire 1 : reset $end
-$var reg 4 @ count [3:0] $end
+$var wire 1 < enable $end
+$var wire 1 = reset $end
+$var reg 4 C count [3:0] $end
 $upscope $end
 $upscope $end
-$scope module flsr_7b $end
+$scope module lfsr_7b $end
 $var wire 1 $ clk $end
-$var wire 1 * enable $end
-$var wire 1 - reset $end
-$var reg 7 A x [6:0] $end
+$var wire 1 + enable $end
+$var wire 1 / reset $end
+$var reg 7 D x [6:0] $end
+$upscope $end
+$scope module lfsr_9b $end
+$var wire 1 $ clk $end
+$var wire 1 , enable $end
+$var wire 1 0 reset $end
+$var reg 9 E x [8:0] $end
 $upscope $end
 $upscope $end
 $upscope $end
 $enddefinitions $end
 $comment Show the parameter values. $end
 $dumpall
-b10 6
-b1 5
-b1000 4
-b1001 3
-b0 2
-b11 1
+b10 9
+b1 8
+b1000 7
+b1001 6
+b0 5
+b11 4
 $end
 #100000
 $dumpvars
+bx E
+bx D
+bx C
+bx B
 bx A
-bx @
-bx ?
+x@
+x?
 bx >
 x=
 x<
-bx ;
+x;
 x:
-x9
-x8
-x7
-bx 0
-bx /
+bx 3
+bx 2
+x1
+x0
+x/
 x.
 x-
 x,
 x+
-x*
-x)
+bx *
+bx )
 x(
 x'
 b0 &
@@ -113,109 +126,109 @@ x#
 x!
 $end
 #1000000
-b0 ;
-1:
-09
-18
-07
+b0 >
+1=
+0<
+1;
+0:
 0'
 0#
 0(
-1<
-0=
-0.
-1,
-0+
+1?
+0@
+01
+1.
+0-
 1$
 #2000000
 b1 &
 0$
 #3000000
-b0 >
-b0 0
-b0 ?
-b0 /
-b0 @
+b0 A
+b0 3
+b0 B
+b0 2
+b0 C
 1$
 #4000000
 0"
 b10 &
 0$
 #5000000
-0<
-0,
+0?
+0.
 1$
 #6000000
 1"
 b11 &
 0$
 #7000000
-b1 ;
-1,
-1+
-1<
-1=
+b1 >
+1.
+1-
+1?
+1@
 1$
 #8000000
 b100 &
 0$
 #9000000
-08
-0:
-19
+0;
+0=
+1<
 1'
 1(
-b1 >
-0=
-0+
+b1 A
+0@
+0-
 1$
 #10000000
 0"
 b101 &
 0$
 #11000000
-0,
-0<
-b1 /
-b1 @
+0.
+0?
+b1 2
+b1 C
 1$
 #12000000
 b110 &
 0$
 #13000000
-b10 /
-b10 @
+b10 2
+b10 C
 1$
 #14000000
 1"
 b111 &
 0$
 #15000000
-1,
-1+
-1<
-1=
-b11 /
-b11 @
+1.
+1-
+1?
+1@
+b11 2
+b11 C
 1$
 #16000000
 0"
 b1000 &
 0$
 #17000000
-b100 /
-b100 @
-0<
-0=
-0,
-0+
+b100 2
+b100 C
+0?
+0@
+0.
+0-
 1$
 #18000000
 b1001 &
 0$
 #19000000
-b101 /
-b101 @
+b101 2
+b101 C
 1$
 #20000000
 x"

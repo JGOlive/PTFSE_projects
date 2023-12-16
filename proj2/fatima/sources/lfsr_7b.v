@@ -1,6 +1,6 @@
 
 
-module flsr_7b(
+module lfsr_7b(
         input clk,
         input reset,
         input enable,

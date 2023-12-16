@@ -1,6 +1,6 @@
 
 
-module flsr(
+module lfsr_9b(
         input clk,
         input reset,
         input enable,
